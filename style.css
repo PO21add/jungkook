@@ -1,228 +1,490 @@
-body{
-    margin:0;
-    padding:0;
-    display:flex;
-    justify-content:center;
-    background:#ffffff;
-    font-family:Arial, sans-serif;
-}
-.wrapper{
-    width:80%;
-    background:#dcdcdc;
-    margin:40px 0;
-    padding:25px;
-    border:15px solid #8b8585;
-}
-.top{
-    display:flex;
-    gap:40px;
-}
-.photo{
-    width:260px;
-    height:260px;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-.photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-.info{
-    background:#d3d3d3;
-    padding:25px;
-    font-size:24px;
-    line-height:1.6;
-    width:100%;
-}
-.btn{
-    background:#d3d3d3;
-    padding:25px;
-    margin-top:30px;
-    text-align:center;
-    font-size:28px;
-    border:12px solid #8b8585;
+/* =========================================
+   ГЛОБАЛЬНЫЙ СТИЛЬ DREAMCORE
+========================================= */
+
+* {
+    box-sizing: border-box;
+    font-family: "Inter", "Montserrat", Arial, sans-serif;
 }
 
-.container {
-    display: block !important;;
-    width: 80%;
+/* --- Фон, как на фото --- */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow-x: auto; /* горизонтальный скролл, если нужно */
+    overflow-y: auto;     
+    display: block;
+    background: #000;
+    position: relative;
+}
+
+/* Размытое фоновое изображение */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("dreamcore.jpg") center/cover no-repeat;
+    filter: blur(10px);
+    transform: scale(1.1);
+    z-index: -2;
+}
+
+/* Вертикальная анимированная градиентная полоса */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 340px;
+    height: 100%;
+    background: linear-gradient(to bottom,
+    #6B9080, #A4C3B2, #CCE3DE, #EAF4F4, #FFFFFF,
+    #EAF4F4, #CCE3DE, #A4C3B2, #6B9080);
+    background-size: 100% 300%;
+    animation: gradientFlow 10s linear infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0 0; }
+    50% { background-position: 0 100%; }
+    100% { background-position: 0 0; }
+}
+
+/* =========================================
+   DREAMCORE КАРТОЧКИ
+========================================= */
+
+.center-card {
+    position: relative;
+    margin: 150px auto 0;
+    width: 480px;
+    background: #ffffffca;
+    backdrop-filter: blur(4px);
+    border-radius: 25px;
+    padding: 40px 35px;
+    box-shadow:
+        0 15px 40px rgba(107,144,128,0.4),
+        0 0 30px rgba(107,144,128,0.25) inset;
+    border: 2px solid rgba(107,144,128,0.3);
+    animation: fadeIn 0.6s ease;
+    left: 0 ;
+    right: 0 ;
+    
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
+}
+
+/* Заголовки */
+.center-card h2,
+.page-title {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #4e6f63;
+    text-shadow: 0 3px 10px rgba(107,144,128,0.5);
+}
+
+/* =========================================
+   DREAMCORE INPUTS & BUTTONS
+========================================= */
+
+input {
+    width: 100%;
+    padding: 14px 18px;
+    margin: 12px 0;
+    border: 2px solid rgba(107,144,128,0.3);
+    border-radius: 15px;
+    background: #F6FFF8;
+    color: #6B9080;
+    box-shadow: inset 0 0 10px rgba(107,144,128,0.2);
+    outline: none;
+    transition: .3s;
+}
+input:focus {
+    border-color: #A4C3B2;
+    box-shadow: 0 0 15px #A4C3B2, inset 0 0 10px #6B9080;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(45deg,#6B9080,#A4C3B2,#CCE3DE);
+    color: #EAF4F4;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .35s;
+    box-shadow: 0 5px 20px rgba(107,144,128,0.4);
+}
+button:hover {
+    transform: scale(1.06) translateY(-200%);
+    box-shadow: 0 8px 25px rgba(107,144,128,0.6);
+}
+
+/* =========================================
+   НАВИГАЦИЯ (в стиле dreamcore)
+========================================= */
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.35);
+    padding: 12px 0;
+    z-index: 99;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.navbar a {
+    font-size: 20px;
+    padding: 10px 18px;
+    color: #ffffff;
+    background: rgba(107,144,128,0.45);
+    border-radius: 12px;
+    transition: 0.3s;
+}
+.navbar a:hover {
+    background: rgba(107,144,128,0.8);
+    transform: scale(1.08);
+}
+
+/* =========================================
+   JOURNAL (список предметов)
+========================================= */
+
+.journal {
+    width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background: #dcdcdc;
-    border: 10px solid #888;
+    font-size: 22px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(6px);
+    border-radius: 18px;
+    border: 3px solid rgba(107,144,128,0.3);
+    transition: 0.25s;
+    box-shadow: 0 5px 20px rgba(107,144,128,0.2);
+    color: black;
+}
+.journal:hover {
+    background: #ffffff;
+    transform: scale(1.02);
+}
+a {
+    text-decoration: none;
+}
+/* =========================================
+   Таблицы (оценки)
+========================================= */
 
-}
-.title {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-.description-block {
-    background: #ccc;
-    padding: 15px;
-    border: 5px solid #777;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.description {
+.table-card {
     width: 80%;
-    font-size: 16px;
-    line-height: 1.4;
+    margin: 140px auto 40px;
+    padding: 30px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 22px;
+    border: 4px solid rgba(107,144,128,0.3);
+    box-shadow: 0 10px 35px rgba(107,144,128,0.25);
 }
-.score {
-    background: #ffbcbc;
-    padding: 15px 25px;
-    font-size: 28px;
-    border-radius: 5px;
+
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
-.numbers {
+td, th {
+    padding: 14px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+/* =========================================
+   Цвета оценок
+========================================= */
+
+.grade {
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* 90+ */
+.white-grade {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 12px rgba(255,255,255,0.7);
+}
+
+/* 70–89 */
+.gray-grade {
+    background: #777777;
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(160, 180, 170, 0.5);
+}
+
+/* <70 */
+.black-grade {
+    background: #000000;
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+/* Центрирование окна по горизонтали и вертикали */
+.login-box {
+    width: 420px; /* увеличено, чтобы перекрывало градиент */
+    padding: 35px 25px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(6px);
+    border-radius: 25px;
+    box-shadow: 0 12px 35px rgba(107,144,128,0.5);
+    text-align: center;
+    position: relative;
+    z-index: 1; /* чтобы окно было поверх градиента */
+}
+
+/* Центрирование по экрану */
+body.login-page {
     display: flex;
-    gap: 20px;
-    margin: 20px 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background: #000;
+    overflow: hidden;
 }
-.num {
-    padding: 10px 20px;
-    background: #fff;
-    border: 3px solid #555;
-    font-size: 20px;
+
+/* Заголовок */
+.login-box h2 {
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #4e6f63;
+    text-shadow: 0 2px 10px rgba(107,144,128,0.5);
+}
+
+/* Поля ввода */
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 10px 0;
+    border: 2px solid rgba(107,144,128,0.3);
+    border-radius: 15px;
+    background: #f6fff8;
+    color: #6B9080;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+/* Кнопка войти */
+.login-btn {
+    width: 100%;
+    padding: 12px 0;
+    margin-top: 18px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(45deg,#6B9080,#A4C3B2,#CCE3DE);
+    color: #EAF4F4;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(107,144,128,0.4);
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Обёртка пароля для глаза */
+.password-wrapper {
+    position: relative;
+}
+
+/* Кнопка-глаз */
+.show-pass {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-200%);
+    width: 22px;
+    height: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 2;
+}
+
+/* Контур глаза */
+.show-pass::before {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 14px;
+    border: 2px solid #000000;
+    border-radius: 11px / 7px;
+    position: relative;
+}
+
+/* Радужка */
+.show-pass::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #000000;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Крестик при показе пароля */
+.show-pass.hide::after {
+    width: 16px;
+    height: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border-radius: 0;
+    box-shadow: 0 -5px 0 #000000;
+    background: #000000;
+}
+
+/* Итоговая оценка внутри карточки */
+.table-card .final-grade {
+    position: absolute;       /* позиционируем относительно .table-card */
+    top: 100px;                /* отступ сверху карточки */
+    right: 200px;              /* отступ справа */
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4e6f63;
+    box-shadow: 0 5px 15px rgba(107,144,128,0.4);
+}
+/* ──────────────── СКРОЛЛ ДЛЯ ОЦЕНОК ──────────────── */
+
+/* Делаем красивый скролл */
+.grades-table::-webkit-scrollbar,
+.practice-exam .block::-webkit-scrollbar {
+    width: 8px;
+}
+
+.grades-table::-webkit-scrollbar-thumb,
+.practice-exam .block::-webkit-scrollbar-thumb {
+    background: #A4C3B2;
+    border-radius: 10px;
+}
+
+.grades-table::-webkit-scrollbar-track,
+.practice-exam .block::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.4);
+}
+
+/* ---- ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ ДЛЯ ВСЕХ ТАБЛИЦ ---- */
+
+.grades-table,
+.practice-exam .block {
+    overflow-x: auto;       /* горизонтальный скролл */
+    white-space: nowrap;    /* чтобы ячейки не переносились */
+}
+
+/* таблицы внутри должны быть строчными — тогда скролл работает идеально */
+.grades-table table,
+.practice-exam table {
+    display: inline-block;
+    width: auto;            /* ширина по содержимому */
 }
 .practice-exam {
     display: flex;
-    margin-top: 30px;
-    gap: 20px;
+    gap: 0;
+    border-top: 2px solid rgba(107,144,128,0.35); /* линия сверху */
+    margin-top: 20px;
+    padding-top: 20px;
 }
-.block {
-    flex: 1;
-    height: 150px;
-    background: #d0d0d0;
-    border: 5px solid #777;
-    padding: 10px;
+
+.practice-exam .block {
+    width: 50%;
+    padding: 0 15px;
+}
+
+.practice-exam {
+    display: block;
+    margin-top: 20px;
+}
+
+/* У каждого блока линия сверху и снизу */
+.practice-exam .block {
+    width: 100%;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-top: 2px solid rgba(107,144,128,0.35);
+    border-bottom: 2px solid rgba(107,144,128,0.35);
+}
+
+/* Убираем нижнюю линию у последнего блока */
+.practice-exam .block:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+/* Линия над названием предмета */
+.subject-title {
     font-size: 20px;
-    width: 45%;
-    overflow: scroll;
-    overflow-y: hidden;
-    
-}
-body {
-    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(107,144,128,0.35);
 }
 
-.white-grade {
-    background: white;
-    color: black;
+/* Нижняя линия после экзамена */
+.practice-exam {
+    display: block;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(107,144,128,0.35); /* линия после последнего блока */
 }
 
-.gray-grade {
-    background: #bfbfbf;
-    color: black;
-}
-
-.black-grade {
-    background: black;
-    color: white;
-}
-
-.value.grade {
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 18px;
-    display: inline-block;
-}
-
-.grades-table th {
-  padding: 8px 15px;
-  border-right: 1px solid #ccc;
-  white-space: nowrap;
-}
-
-.grades-table {
+/* Каждый блок практики/экзамена с верхней и нижней линией */
+.practice-exam .block {
     width: 100%;
-    overflow: scroll;
-    overflow-y: hidden;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-top: 2px solid rgba(107,144,128,0.35);
+    border-bottom: 2px solid rgba(107,144,128,0.35);
 }
 
-.practice-exam th {
-  padding: 8px 15px;
-  border-right: 1px solid #ccc;
-  white-space: nowrap;
+/* Убираем нижнюю линию у последнего блока, чтобы не дублировалась с общей линией */
+.practice-exam .block:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
 }
-.practice-exam table {
-    width: 100%;
-    border-collapse: collapse;
+/* Линия под названием предмета */
+.subject-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(107,144,128,0.35); /* линия под заголовком */
 }
-
-.practice-exam th,
-.practice-exam td {
-    width: 80px;          /* одинаковая ширина для всех колонок */
-    text-align: center;   /* центрируем содержимое */
-    padding: 8px 5px;
-}
-
-.value.grade {
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;    /* центр внутри квадратика */
-}
-
-/* Основная таблица (верхние оценки) */
-.grades-table table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center; /* выравниваем текст по центру */
-}
-
-.grades-table th,
-.grades-table td {
-    padding: 8px 12px;  /* отступы вокруг */
-    text-align: center;  /* центрируем содержимое ячеек */
-}
-
-.grades-table .value.grade {
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center; /* центр внутри квадратика */
-}
-
-.table-wrapper {
-    overflow-x: auto;   /* горизонтальный скролл при необходимости */
-    width: 100%;        /* занимает всю ширину блока */
-}
-
-.grades-table table,
-.practice-exam table {
-    border-collapse: collapse;
-    text-align: center;
-    min-width: 100%;    /* чтобы таблица не сжималась слишком сильно */
-}
-
-.grades-table th,
-.grades-table td,
-.practice-exam th,
-.practice-exam td {
-    width: 80px;        /* фиксированная ширина колонки */
-    padding: 8px 12px;
-    text-align: center;
-}
-
-.value.grade {
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-}
-body::-webkit-scrollbar {
-    display: none;
-}
-

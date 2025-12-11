@@ -1,0 +1,372 @@
+grades.html:
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Оценки</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="title">Оценки</div>
+
+    <div class="description-block">
+        <div class="description">
+            Применение базовых знаний экономики и основ предпринимательства
+        </div>
+        <div class="score">95</div>
+    </div>
+
+    <!-- Основная таблица -->
+    <div class="grades-table">
+        <table></table>
+    </div>
+
+    <!-- Практика и экзамен -->
+    <div class="practice-exam">
+        <div class="block">
+            <div class="practice-title">Практика</div>
+            <table id="practice-table"></table>
+        </div>
+        <div class="block">
+            <div class="practice-title">Экзамен</div>
+            <table id="exam-table"></table>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+index.html:
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Главная страница</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+
+        <div class="top">
+            <div class="photo">
+                <img src="https://i.pinimg.com/736x/c0/4d/15/c04d1573dc06670e0b94248c9326598f.jpg" alt="cat">
+            </div>
+
+            <div class="info">
+                Группа : ПО - 21<br><br>
+                ФИО : Ораз Д.А<br><br>
+                Курс : 2
+            </div>
+        </div>
+
+        <a href="newpage.html">
+          <div class="btn">Оценки</div>
+        </a>
+        <div class="btn">Расписание</div>
+        <div class="btn">Зачет</div>
+        <div class="btn">Уведомления</div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+newpage.html:
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Оценки — Прокручиваемая страница</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="title">Оценки</div>
+    <a href="grades.html">
+    <div class="journal">
+        Применение базовых знаний экономики и основ предпринимательства</div>
+    </a>
+    
+    <a href="grades.html">
+    <div class="journal">
+        Применение информационно- коммуникационных и цифровых технологий</div>
+    </a>
+
+    <a href="grades.html">
+    <div class="journal">
+        Проверка работоспособности рефакторинга программного кода</div>
+    </a>
+
+    <div class="journal">
+        Составление алгоритма и создание блок схемы на основе спецификации программного обеспечения
+    </div>
+
+    <div class="journal">
+        Проектирование программного обеспечения
+    </div>
+
+    <div class="journal">
+        Программирование модулей программного обеспечения
+    </div>
+
+    <div class="journal">
+        Развитие и совершенствование физических качеств
+    </div>
+
+    <div class="journal">
+        Иностранный язык.
+    </div>
+
+</div>
+</body>
+</html>
+style.css:
+body{
+    margin:0;
+    padding:0;
+    display:flex;
+    justify-content:center;
+    background:#ffffff;
+    font-family:Arial, sans-serif;
+}
+.wrapper{
+    width:80%;
+    background:#dcdcdc;
+    margin:40px 0;
+    padding:25px;
+    border:15px solid #8b8585;
+}
+.top{
+    display:flex;
+    gap:40px;
+}
+.photo{
+    width:260px;
+    height:260px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.info{
+    background:#d3d3d3;
+    padding:25px;
+    font-size:24px;
+    line-height:1.6;
+    width:100%;
+}
+.btn{
+    background:#d3d3d3;
+    padding:25px;
+    margin-top:30px;
+    text-align:center;
+    font-size:28px;
+    border:12px solid #8b8585;
+}
+
+.container {
+    display: block !important;;
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #dcdcdc;
+    border: 10px solid #888;
+
+}
+.title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.description-block {
+    background: #ccc;
+    padding: 15px;
+    border: 5px solid #777;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.description {
+    width: 80%;
+    font-size: 16px;
+    line-height: 1.4;
+}
+.score {
+    background: #ffbcbc;
+    padding: 15px 25px;
+    font-size: 28px;
+    border-radius: 5px;
+}
+.numbers {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+.num {
+    padding: 10px 20px;
+    background: #fff;
+    border: 3px solid #555;
+    font-size: 20px;
+}
+.practice-exam {
+    display: flex;
+    margin-top: 30px;
+    gap: 20px;
+}
+.block {
+    flex: 1;
+    height: 150px;
+    background: #d0d0d0;
+    border: 5px solid #777;
+    padding: 10px;
+    font-size: 20px;
+    width: 45%;
+    overflow: scroll;
+    overflow-y: hidden;
+    
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+.white-grade {
+    background: white;
+    color: black;
+}
+
+.gray-grade {
+    background: #bfbfbf;
+    color: black;
+}
+
+.black-grade {
+    background: black;
+    color: white;
+}
+
+.value.grade {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.grades-table th {
+  padding: 8px 15px;
+  border-right: 1px solid #ccc;
+  white-space: nowrap;
+}
+
+.grades-table {
+    width: 100%;
+    overflow: scroll;
+    overflow-y: hidden;
+}
+
+.practice-exam th {
+  padding: 8px 15px;
+  border-right: 1px solid #ccc;
+  white-space: nowrap;
+}
+.practice-exam table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.practice-exam th,
+.practice-exam td {
+    width: 80px;          /* одинаковая ширина для всех колонок */
+    text-align: center;   /* центрируем содержимое */
+    padding: 8px 5px;
+}
+
+.value.grade {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;    /* центр внутри квадратика */
+}
+
+/* Основная таблица (верхние оценки) */
+.grades-table table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center; /* выравниваем текст по центру */
+}
+
+.grades-table th,
+.grades-table td {
+    padding: 8px 12px;  /* отступы вокруг */
+    text-align: center;  /* центрируем содержимое ячеек */
+}
+
+.grades-table .value.grade {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center; /* центр внутри квадратика */
+}
+
+.table-wrapper {
+    overflow-x: auto;   /* горизонтальный скролл при необходимости */
+    width: 100%;        /* занимает всю ширину блока */
+}
+
+.grades-table table,
+.practice-exam table {
+    border-collapse: collapse;
+    text-align: center;
+    min-width: 100%;    /* чтобы таблица не сжималась слишком сильно */
+}
+
+.grades-table th,
+.grades-table td,
+.practice-exam th,
+.practice-exam td {
+    width: 80px;        /* фиксированная ширина колонки */
+    padding: 8px 12px;
+    text-align: center;
+}
+
+.value.grade {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+.journal{
+    background: #C3ACCE;
+    padding: 20px;
+    border-radius: 12px;
+    border: 3px solid #D5C7BC;
+    width: 95% ;
+    margin-bottom: 20px;
+}
+.journal:hover{
+    background: #6C534E;
+}
+a {
+    color: rgb(204, 9, 9);         
+    text-decoration: none; 
+}
+
+
+
